@@ -1,0 +1,42 @@
+git init ——本地路径初始化，新建仓库    .git文件夹：版本库
+git add <file name>  ——向仓库添加文件记录 (可一次提交多个文件)
+	其实质是将修改添加至暂存区stage，使用以下指令将文件移出：
+	git restore --staged <file name>
+	该文件和未git add文件将处于untracked状态
+	接下来输入git commit指令将stage文件提交，但untracked文件不会被删除
+git commit -m 'txt'  ——新建说明，添加新版本
+	其实质是将暂存区文件提交至master分支（-m），从而建立新版本
+	【暂存区在commit后与HEAD版本库内容相同，并不是说没有内容了】
+git log  ——查看历史记录（包括 commit ID,Author,Date,commit content）
+git log --pretty=oneline  ——显示一行历史记录
+git reset --hard <参数> ——版本回退，参数如下：
+	HEAD~*  ——版本回退*个版本，HEAD表示当前版本，可理解为“指针”
+	<commit ID>  ——版本回退到某一指定commit ID，只需要输入特定的前4位
+	HEAD@{*}  ——（不常用）版本回退到第*指针操作记录，可输入git reflog查看
+git reflog ——查看命令历史（指针操作记录）
+
+
+** 工作区和暂存区的关系
+【工作区——git add——>暂存区——git commit——>仓库】
+git status ——查看工作区状态
+git diff ——查看工作区和暂存区差异
+	git diff 比较的是工作区当前文件和暂存区文件的差异，比如你修改了工作区的文件，但是并没有git add，那么就
+	可以用git diff查看到修改前后的差异。git add文件后，git diff就看不到了
+显示差异的格式：	【暂存区——（+/-）——>工作区】
+git diff HEAD ——查看工作区和仓库差异
+	【仓库——（+/-）——>工作区】
+git diff --cached ——查看暂存区和仓库差异，原理同git diff，只是比较对象变化
+	【仓库——（+/-）——>暂存区】
+* git checkout -- <file name> ——git add反向指令，撤销工作区修改，将暂存区最新版本转移到工作区 
+* git reset HEAD <file name> ——git commit反向指令，撤销本次提交，将仓库当前版本转移到暂存区
+
+注1：以上内容均可在本地版本库实现撤销修改，前提是没有提交到远程版本库
+
+* ？cat <file name> ——查看文件内容
+* rm <file name> ——删除文件
+
+git rm <file name> ——删除版本库文件（需要git commit更新，相当于建立一个新版本）
+	【当文件已经提交到版本库后，将永远不再担心误删，可以进行版本回退；但这也意味着，未被提交的任何修改在进行操作恢复时都会丢失】
+
+
+
