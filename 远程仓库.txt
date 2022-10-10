@@ -1,0 +1,5 @@
+注册github账号：YMStar
+
+创建SSH Key:
+$ ssh-keygen -t rsa -C '@email'
+在C:/用户/.ssh下出现两个文件，其中id_rsa为密钥，必须保密；id_rsa.pub为公钥，可以开放
