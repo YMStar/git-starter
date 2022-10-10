@@ -3,3 +3,10 @@
 创建SSH Key:
 $ ssh-keygen -t rsa -C '@email'
 在C:/用户/.ssh下出现两个文件，其中id_rsa为密钥，必须保密；id_rsa.pub为公钥，可以开放
+
+添加github/gogs远程仓库：
+git remote add origin <url>
+（需要先在远程服务器新建版本库）
+
+将本地版本库更新到远程：
+git push -u origin master（在github上master要用main代替）
